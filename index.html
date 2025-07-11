@@ -93,10 +93,6 @@
       flex-direction: column;
       gap: 15px;
       animation: fadeIn 0.6s ease;
-      align-items: center;
-      margin-top: 0;
-      height: 100vh;
-      overflow-y: auto;
     }
 
     .subject-card {
@@ -105,7 +101,6 @@
       border-left: 5px solid #2d2f7d;
       border-radius: 10px;
       transition: 0.3s ease;
-      width: 100%;
     }
 
     .subject-card:hover {
@@ -154,7 +149,7 @@
     <button onclick="checkLogin()">Login</button>
   </div>
 
-  <div class="container dashboard" id="dashboardPage" style="margin-top: 0;">
+  <div class="container dashboard" id="dashboardPage">
     <h2 style="margin-bottom: 20px;">Welcome to VTU-CS Premium Portal</h2>
 
     <div class="subject-card">
@@ -187,11 +182,17 @@
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      if(username === "sc" && password === "cs") {
+      const validUsers = [
+        { username: "ss", password: "dd" },
+        { username: "vtu_user1286", password: "vtu@123" }
+      ];
+
+      const isValid = validUsers.some(user => user.username === username && user.password === password);
+
+      if (isValid) {
         document.getElementById("loginPage").style.display = "none";
         document.getElementById("dashboardPage").style.display = "flex";
         document.body.style.background = "#ffffff";
-        document.body.style.overflow = "auto";
       } else {
         alert("Invalid credentials! Try again.");
       }
